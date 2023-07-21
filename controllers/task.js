@@ -1,9 +1,9 @@
 const Task = require("../models/task");
 const mongoose = require("mongoose");
 
-// get all
+// get all task
 const getAllTask = async (req, res) => {
-  const tasks = await Task.find({}).sort({createdAt:-1});
+  const tasks = await Task.find({}).sort({ createdAt: -1 });
   if (!tasks) {
     throw Error("Tasks not found.");
   }
@@ -45,15 +45,15 @@ const deleteTask = async (req, res) => {
 // update task
 const updateTask = async (req, res) => {
   try {
-  const { id } = req.params;
-  const { text } = req.body;
-  if(!text){
-    throw Error("No text.")
-  }
-    
-      if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: "Invalid id" });
-      }
+    const { id } = req.params;
+    const { text } = req.body;
+    if (!text) {
+      throw Error("No text.");
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: "Invalid id" });
+    }
     const task = await Task.findOneAndUpdate(
       { _id: id },
       { ...req.body },
@@ -71,5 +71,5 @@ module.exports = {
   getTask,
   getAllTask,
   deleteTask,
-  updateTask
+  updateTask,
 };
