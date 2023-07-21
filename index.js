@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const taskRoute = require("./routes/task");
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 const uri = process.env.MONGO_URI;
 // middleware
 app.use(cors({ credentials: true }));
